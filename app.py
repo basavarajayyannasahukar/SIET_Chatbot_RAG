@@ -7,7 +7,7 @@ st.caption("IN by madhav")
 
 mykey = st.secreted("GROQ_API_KEY")
 
-@st.cache
+@st.cache_resource
 def initiate_rag():
   return load_base("01_College_Information.pdf")
   index, embed_module, chunks = initiate_rag()
@@ -23,16 +23,18 @@ question = st.chat_input("Ask anything about SIET college....")
 
 if question:
   st.session_state.chat_hist.append(
-    {"role" : "user", content = question})
+    {"role" : "user", "content" = question})
   with st.chat_message("user"):
    st.write(question)
 
   with st.chat_message("assistant"):
     with st.spinner("Asking RAG for answer...."):
-      answer = ask_rag(question, embed_model, chunks, index, api_key = mykey, num_chunks)
+      answer = ask_rag(question, embed_model, chunks, index, api_key = mykey)
       st.write(answer)
+      st.session_state.chat_hist.append(
+    {"role" : "user", "content" = answer})
 
   if st.button("clearchat"):
     st.session_state.chat_hist = []
-    st.rerun
+    st.rerun()
   
