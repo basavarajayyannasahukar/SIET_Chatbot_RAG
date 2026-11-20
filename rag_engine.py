@@ -69,7 +69,7 @@ def retrieve_content (question, embed_model, chunks, index, num_chunks=3):
     if information not available, simply say information missing.
     Document background : """+ background + "user question" + question + "answer:"
     client = Groq(api_key = key)
-    response = client.chat.completion.create
+    response = client.chat.completion.create(
     model = model_name,
     messages = [{"role" : "user",
                   "content" : prompt}],
