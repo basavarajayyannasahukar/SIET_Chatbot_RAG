@@ -70,7 +70,11 @@ def retrieve_content (question, embed_model, chunks, index, num_chunks=3):
     client = Groq(api_key = key)
     response = client.chat.completion.create
     model = model_name,
-    messages 
+    messages = [{""role" : "user",
+                  "content" : prompt}],
+                  temerature = 0.3,
+    )
+    return response.choises[0].message.content
     
   
 
