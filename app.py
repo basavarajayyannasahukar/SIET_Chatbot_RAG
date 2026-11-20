@@ -5,7 +5,7 @@ st.title("shedevi institute of engineering and technology-chartbot")
 st.caption("ask any question  about college info....")
 st.caption("IN by madhav")
 
-mykey = st.secrets("GROQ_API_KEY")
+mykey = st.secrets["GROQ_API_KEY"]
 
 @st.cache_resource
 def initiate_rag():
