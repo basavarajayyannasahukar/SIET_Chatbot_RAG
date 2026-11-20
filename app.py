@@ -10,7 +10,7 @@ mykey = st.secrets["GROQ_API_KEY"]
 @st.cache_resource
 def initiate_rag():
   return load_base("01_College_Information.pdf")
-  index, embed_module, chunks = initiate_rag()
+  index, embd_module, chunks = initiate_rag()
 
 if "chat_hist" not in st.session_state:
   st.session_state.chat_hist = []
@@ -29,7 +29,7 @@ if question:
 
   with st.chat_message("assistant"):
     with st.spinner("Asking RAG for answer...."):
-      answer = ask_rag(question, embed_model, chunks, index, api_key = mykey)
+      answer = ask_rag(question, embd_model, chunks, index, api_key = mykey)
       st.write(answer)
       st.session_state.chat_hist.append(
     {"role" : "user", "content" : answer})
